@@ -12,10 +12,18 @@ class UserViewModel(
 
 
     // StateFlow — поток состояний для Compose
-    private val _users = MutableStateFlow<List<User>>(emptyList())
-    val users: StateFlow<List<User>> = _users
+    private val _users = MutableStateFlow<MutableList<User>>(mutableListOf())
+    var users: StateFlow<MutableList<User>> = _users
 
     init {
+//        repository.initUsers();
+//        loadUsers()
+    }
+
+    fun addUsers() {
+        repository.addNewUsers();
+        _users.value = repository.getUsers()
+//        users = _users
         loadUsers()
     }
 

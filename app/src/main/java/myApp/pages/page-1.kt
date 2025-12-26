@@ -12,6 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -24,6 +28,7 @@ import myApp.UserViewModel
 fun Pape1(navController: NavHostController) {
     val userViewModel: UserViewModel = viewModel()
     val users by userViewModel.users.collectAsState()
+    var data by remember { mutableStateOf(listOf("Alice", "Bob")) }
 
     Column(
         modifier = Modifier
@@ -41,6 +46,10 @@ fun Pape1(navController: NavHostController) {
             Text("Перейти на user")
         }
 
+        Button(onClick = { userViewModel.addUsers() }) {
+            Text("add users")
+        }
+
         Column(
             modifier = Modifier
 //            .background(Color.Red)
@@ -50,9 +59,9 @@ fun Pape1(navController: NavHostController) {
             ,
             verticalArrangement = Arrangement.Center
         ) {
-            users.map { it ->
-                Text(it.name + " " + it.id)
-            }
+//            users.map { it ->
+                Text(users.toString())
+//            }
 
 
 
