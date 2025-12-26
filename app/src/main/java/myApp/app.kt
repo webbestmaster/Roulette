@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -22,10 +23,10 @@ import myApp.pages.Home
 import myApp.pages.Pape1
 import myApp.pages.UserPage
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun App() {
-    val navController = rememberNavController()
+fun App(navController: NavHostController) {
+//    val navController = rememberNavController()
 
     Column(
         modifier = Modifier

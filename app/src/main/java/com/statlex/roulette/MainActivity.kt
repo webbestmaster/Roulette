@@ -21,23 +21,54 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import myApp.App
 
 class MainActivity : AppCompatActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+
+
         setContent {
             RouletteTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+
+                val navController = rememberNavController()
+
+                // Подписка на текущий BackStackEntry
+
+
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route ?: "home"
+                Log.d("!!!", "route: " + currentRoute)
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+
+                    topBar = {
+
+
+                        TopAppBar(
+                            title = {
+                                Text(currentRoute)
+                            }
+                        )
+                    }
+
+                ) { innerPadding ->
                     val scrollState = rememberScrollState()
 
                     Column(
@@ -48,26 +79,26 @@ class MainActivity : AppCompatActivity() {
 //                            .verticalScroll(scrollState)
                     ) {
 
-                        App()
+                        App(navController = navController)
 
-/*
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.background(Color.White)
-                        )
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.background(Color.White)
-                        )
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.background(Color.White)
-                        )
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.background(Color.White)
-                        )
-*/
+                        /*
+                                                Greeting(
+                                                    name = "Android",
+                                                    modifier = Modifier.background(Color.White)
+                                                )
+                                                Greeting(
+                                                    name = "Android",
+                                                    modifier = Modifier.background(Color.White)
+                                                )
+                                                Greeting(
+                                                    name = "Android",
+                                                    modifier = Modifier.background(Color.White)
+                                                )
+                                                Greeting(
+                                                    name = "Android",
+                                                    modifier = Modifier.background(Color.White)
+                                                )
+                        */
                     }
                 }
             }
