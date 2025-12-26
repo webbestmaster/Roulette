@@ -25,6 +25,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import myApp.App
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +43,14 @@ class MainActivity : AppCompatActivity() {
                     Column(
                         modifier = Modifier
                             .padding(innerPadding)
-                            .background(Color.Yellow)
+//                            .background(Color.Yellow)
                             .fillMaxSize()
                             .verticalScroll(scrollState)
                     ) {
+
+                        App()
+
+/*
                         Greeting(
                             name = "Android",
                             modifier = Modifier.background(Color.White)
@@ -59,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                             name = "Android",
                             modifier = Modifier.background(Color.White)
                         )
+*/
                     }
                 }
             }
@@ -94,3 +103,4 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
