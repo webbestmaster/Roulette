@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import myApp.Routes
 
 @Composable
 fun Pape1(navController: NavHostController) {
@@ -23,7 +24,7 @@ fun Pape1(navController: NavHostController) {
     ) {
         Text("Первая страница - separated")
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("second") }) {
+        Button(onClick = { navController.navigate(Routes.SECOND) }) {
             Text("Перейти на вторую")
         }
     }

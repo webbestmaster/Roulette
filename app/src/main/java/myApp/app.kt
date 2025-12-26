@@ -21,12 +21,12 @@ import myApp.pages.Pape1
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "first") {
-        composable("first") {
+    NavHost(navController = navController, startDestination = Routes.FIRST) {
+        composable(Routes.FIRST) {
             Pape1(navController)
         }
 
-        composable("second") {
+        composable(Routes.SECOND) {
             Home(navController)
         }
     }
