@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
                     Column(
                         modifier = Modifier
                             .padding(innerPadding)
-//                            .background(Color.Yellow)
                             .fillMaxSize()
-                            .verticalScroll(scrollState)
+                            .background(Color.Yellow)
+//                            .verticalScroll(scrollState)
                     ) {
 
                         App()

@@ -27,5 +27,9 @@ fun Pape1(navController: NavHostController) {
         Button(onClick = { navController.navigate(Routes.SECOND) }) {
             Text("Перейти на вторую")
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { navController.navigate(Routes.USER) }) {
+            Text("Перейти на user")
+        }
     }
 }
