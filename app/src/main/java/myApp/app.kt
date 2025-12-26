@@ -36,7 +36,7 @@ fun App() {
     ) {
         NavHost(
             navController = navController,
-            startDestination = Routes.USER,
+            startDestination = Routes.FIRST,
             modifier = Modifier
                 .fillMaxSize()
 //                .weight(1f)

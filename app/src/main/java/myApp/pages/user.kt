@@ -32,8 +32,10 @@ import myApp.user_rep.User
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import myApp.UserViewModel
 import myApp.user_rep.UserRepository
 
+/*
 
 class UserViewModel(
     private val repository: UserRepository = UserRepository()
@@ -51,6 +53,7 @@ class UserViewModel(
         _users.value = repository.getUsers()
     }
 }
+*/
 
 @Composable
 fun UserPage(navController: NavHostController) {
@@ -86,18 +89,19 @@ fun UserPage(navController: NavHostController) {
 //            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(items) { item ->
-                Text(
-                    text = item,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White
-                )
-            }
+//            items(items) { item ->
+//                Text(
+//                    text = item,
+//                    style = MaterialTheme.typography.bodyLarge,
+//                    color = Color.White
+//                )
+//            }
 
 //            users.map { it ->
 //            }
-//            items(users) { user ->
-//            }
+            items(users) { user ->
+                UserCard(user)
+            }
         }
     }
 }
