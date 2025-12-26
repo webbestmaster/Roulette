@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import myApp.pages.Home
 import myApp.pages.Pape1
 
 @Composable
@@ -23,22 +24,10 @@ fun AppNavigation() {
     NavHost(navController = navController, startDestination = "first") {
         composable("first") {
             Pape1(navController)
-            //            FirstScreen(navController)
         }
 
         composable("second") {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text("Вторая страница")
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { navController.popBackStack() }) {
-                    Text("Назад")
-                }
-            }
+            Home(navController)
         }
     }
 }
