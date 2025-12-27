@@ -1,3 +1,4 @@
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +20,7 @@ fun VoiceRecorderScreen() {
     val recorder = remember { AudioRecorder(context) }
 
     var isRecording by remember { mutableStateOf(false) }
-    var recordedFile by remember { mutableStateOf<File?>(null) }
+    var recordedFile by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -29,10 +30,10 @@ fun VoiceRecorderScreen() {
 
         Button(
             onClick = {
-                if (!isRecording) {
-                    recorder.startRecording()
-                } else {
+                if (isRecording) {
                     recordedFile = recorder.stopRecording()
+                } else {
+                    recorder.startRecording()
                 }
                 isRecording = !isRecording
             }
@@ -45,7 +46,7 @@ fun VoiceRecorderScreen() {
         recordedFile?.let {
             Spacer(modifier = Modifier.height(16.dp))
             Text("Файл сохранён:")
-            Text(it.absolutePath, fontSize = 12.sp)
+            Text(it.toString(), fontSize = 12.sp)
         }
     }
 }

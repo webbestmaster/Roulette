@@ -1,6 +1,7 @@
 import android.content.ContentValues
 import android.content.Context
 import android.media.MediaRecorder
+import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import androidx.annotation.RequiresApi
@@ -9,16 +10,13 @@ import java.io.FileDescriptor
 import java.io.IOException
 
 class AudioRecorder(
-    private val context: Context
+    private val context: Context,
 ) {
 
     private var recorder: MediaRecorder? = null
-    private var outputFile: File? = null
-
-//    private var recorder: MediaRecorder? = null
+    private var outputFile: String? = null
     private var fileDescriptor: FileDescriptor? = null
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     fun startRecording() {
         val resolver = context.contentResolver
 
@@ -27,19 +25,16 @@ class AudioRecorder(
         val values = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
             put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp4")
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                put(
-                    MediaStore.MediaColumns.RELATIVE_PATH,
-                    "Download"
-                )
-            }
+            put(MediaStore.MediaColumns.RELATIVE_PATH, "Download")
         }
 
         val uri = resolver.insert(
             MediaStore.Downloads.EXTERNAL_CONTENT_URI,
             values
         ) ?: return
+
+
+        outputFile = "Download/" + fileName
 
         val pfd = resolver.openFileDescriptor(uri, "w") ?: return
         fileDescriptor = pfd.fileDescriptor
@@ -55,7 +50,7 @@ class AudioRecorder(
         }
     }
 
-    fun stopRecording(): File? {
+    fun stopRecording(): String? {
         recorder?.apply {
             stop()
             release()
