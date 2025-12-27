@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import myApp.NoiseRecordingScreen
 
 
 @Composable
@@ -42,10 +43,7 @@ fun RequestAudioPermission(
 
 @Composable
 fun Record(navController: NavHostController) {
-
     var permissionGranted by remember { mutableStateOf(false) }
-
-
 
     Column(
         modifier = Modifier
@@ -69,6 +67,8 @@ fun Record(navController: NavHostController) {
         }) {
             Text(text = "Rec", color = Color.White)
         }
+
+        NoiseRecordingScreen()
     }
 
 }
