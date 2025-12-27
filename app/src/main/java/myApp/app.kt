@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import myApp.pages.Home
 import myApp.pages.Pape1
+import myApp.pages.Record
 import myApp.pages.UserPage
 
 //@Preview(showBackground = true)
@@ -31,17 +32,17 @@ fun App(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan)
+//            .background(Color.Cyan)
             .padding(16.dp)
 //            .weight(1f)
     ) {
         NavHost(
             navController = navController,
-            startDestination = Routes.FIRST,
+            startDestination = Routes.RECORD,
             modifier = Modifier
                 .fillMaxSize()
 //                .weight(1f)
-                .background(Color.Green)
+//                .background(Color.Green)
                 .padding(16.dp)
         ) {
             composable(Routes.FIRST) {
@@ -54,6 +55,10 @@ fun App(navController: NavHostController) {
 
             composable(Routes.USER) {
                 UserPage(navController)
+            }
+
+            composable(Routes.RECORD) {
+                Record(navController)
             }
         }
     }

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()
-                            .background(Color.Yellow)
+//                            .background(Color.Yellow)
 //                            .verticalScroll(scrollState)
                     ) {
 
