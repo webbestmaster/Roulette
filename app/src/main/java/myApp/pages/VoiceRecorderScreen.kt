@@ -17,7 +17,7 @@ import java.io.File
 @Composable
 fun VoiceRecorderScreen() {
     val context = LocalContext.current
-    val recorder = remember { AudioRecorder(context) }
+    val recorder = remember { VoiceAudioRecorder(context) }
 
     var isRecording by remember { mutableStateOf(false) }
     var recordedFile by remember { mutableStateOf<String?>(null) }
@@ -31,7 +31,7 @@ fun VoiceRecorderScreen() {
         Button(
             onClick = {
                 if (isRecording) {
-                    recordedFile = recorder.stopRecording()
+                    recorder.stopRecording()
                 } else {
                     recorder.startRecording()
                 }
@@ -43,10 +43,12 @@ fun VoiceRecorderScreen() {
             )
         }
 
+/*
         recordedFile?.let {
             Spacer(modifier = Modifier.height(16.dp))
             Text("Файл сохранён:")
             Text(it.toString(), fontSize = 12.sp)
         }
+*/
     }
 }
