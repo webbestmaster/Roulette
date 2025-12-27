@@ -1,8 +1,8 @@
 package myApp.pages
 
 //import UserViewModel
-import android.R
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -24,6 +25,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
@@ -34,7 +37,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import myApp.UserViewModel
 import myApp.user_rep.UserRepository
+import com.statlex.roulette.R
 
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 /*
 
 class UserViewModel(
@@ -80,6 +86,14 @@ fun UserPage(navController: NavHostController) {
         Button(onClick = { navController.navigate(Routes.SECOND) }) {
             Text("Перейти на вторую")
         }
+
+
+        Image(
+            painter = painterResource(id = R.drawable.www),
+            contentDescription = "Логотип",
+            modifier = Modifier.size(100.dp),
+            contentScale = ContentScale.Crop,
+        )
 
         LazyColumn(
             modifier = Modifier.weight(0.3f) // 30%
