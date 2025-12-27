@@ -1,7 +1,10 @@
 package myApp.pages
 
-import android.R
+import VoiceRecorderScreen
+import android.Manifest
 import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,19 +14,54 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
+
+@Composable
+fun RequestAudioPermission(
+    onGranted: () -> Unit
+) {
+    val launcher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) onGranted()
+    }
+
+    LaunchedEffect(Unit) {
+        launcher.launch(Manifest.permission.RECORD_AUDIO)
+    }
+}
+
 @Composable
 fun Record(navController: NavHostController) {
+
+    var permissionGranted by remember { mutableStateOf(false) }
+
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
+
+        if (!permissionGranted) {
+            RequestAudioPermission {
+                permissionGranted = true
+            }
+        } else {
+            VoiceRecorderScreen()
+        }
+
         Text("Record paga")
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
